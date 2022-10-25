@@ -1,0 +1,73 @@
+<!--
+Assuming all the necessary variables are set before calling this script
+external.dir=${nlbuildroot}/../../external
+-->
+<project name="build_xlib" default="all" basedir=".">
+
+	<property name="nlbuildroot" value ="${basedir}/.." />
+
+	<property file="${nlbuildroot}/scripts/build.properties" />
+	<property file="${nlbuildroot}/scripts/build-scripts.properties" />
+	<property file="${nlbuildroot}/scripts/rmJavaSDK-build.properties" />
+
+	<property name="xlib_KeyMgmt" value ="${RMJavaSdk.lib.dir}/KeyMgmt" />
+	<property name="xlib_Obfuscation" value ="${RMJavaSdk.lib.dir}/Obfuscation" />
+	<property name="xlib_Logging" value ="${RMJavaSdk.lib.dir}/Logging" />
+	<property name="xlib_Commons" value ="${RMJavaSdk.lib.dir}/commons" />
+	<property name="xlib_HttpClient" value ="${RMJavaSdk.lib.dir}/httpclient" />
+	<property name="xlib_Jaxb" value ="${RMJavaSdk.lib.dir}/jaxb" />
+	<property name="main.rmJavaSDK" value="${nlbuildroot}"/>
+	<property name="main.rmJavaSDK.lib" value="${main.rmJavaSDK}/lib"/>
+
+	<!-- Dump properties -->
+	<echoproperties />
+	<echo message="INFO: Dump properties completed" />
+
+	<!-- Sanity checks -->
+	<fail message="external.dir is not set" unless="external.dir" />
+	<fail message="external.dir is empty">
+		<condition>
+			<equals arg1="${external.dir}" arg2="" trim="true" />
+		</condition>
+	</fail>
+	<available file="${external.dir}" type="dir" property="local.external.dir_exists" />
+	<fail message="external.dir directory does not exist - ${external.dir}" unless="local.external.dir_exists" />
+	<echo message="INFO: Sanity check completed (no error)" />
+
+	<!-- Targets-->
+	<target name="all" depends="clean, prepare_external_java, prepare_rmJavaSDK_externals" />
+
+	<target name="prepare_external_java">
+		<mkdir dir="${xlib_jar_dir}" />
+
+		<!--  Copy java SDK jar and keymanagement service jar from fate artifacts -->
+	<unzip src="${xlib_fate_build_artifacts_bin_zip_file}" dest="${xlib_jar_dir}" overwrite="false">
+		<patternset>
+			<include name="bin/java/KeyManagementService.jar" />
+		</patternset>
+		<mapper type="flatten" />
+	</unzip>
+	</target>
+
+	<target name="prepare_rmJavaSDK_externals">
+		<mkdir dir="${xlib_KeyMgmt}" />
+		<mkdir dir="${xlib_Obfuscation}" />
+		<mkdir dir="${xlib_Logging}" />
+		<mkdir dir="${xlib_Commons}" />
+		<mkdir dir="${xlib_HttpClient}" />
+		<mkdir dir="${xlib_Jaxb}" />
+		<copy file="${xlib_jar_dir}/KeyManagementService.jar" todir="${xlib_KeyMgmt}" preservelastmodified="true" overwrite="false" verbose="true" />
+		<copy file="${external.dir}/allatori/allatori.jar" todir="${xlib_Obfuscation}" preservelastmodified="true" overwrite="false" verbose="true" />
+		<!--Correct the version number of this file -->
+		<copy file="${external.dir}/commons-io/commons-io-2.4/commons-io-2.4.jar" todir="${xlib_Commons}" preservelastmodified="true" overwrite="false" verbose="true" />
+		<copy file="${external.dir}/commons-codec/commons-codec-1.10/commons-codec-1.10.jar" todir="${xlib_Commons}" preservelastmodified="true" overwrite="false" verbose="true" />
+		<copy file="${external.dir}/jaxb/jaxb-2.2.11/jaxb-core-2.2.11.jar" todir="${xlib_Jaxb}" preservelastmodified="true" overwrite="false" verbose="true" />
+		<copy file="${external.dir}/jaxb/jaxb-2.2.11/jaxb-xjc-2.2.11.jar" todir="${xlib_Jaxb}" preservelastmodified="true" overwrite="false" verbose="true" />
+		<copy file="${external.dir}/slf4j/slf4j-1.7.13/slf4j-api-1.7.13.jar" todir="${xlib_Logging}" preservelastmodified="true" overwrite="false" verbose="true" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${xlib_dir}" />
+	</target>
+
+</project>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://nextlabs.com/kms/types"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:types="http://nextlabs.com/kms/types">
+
+        <xs:complexType name="KeyIdDTO">
+                <xs:sequence>
+                        <xs:element name="hash" type="xs:hexBinary" />
+                        <xs:element name="timestamp" type="xs:long" />
+                </xs:sequence>
+        </xs:complexType>
+
+        <xs:complexType name="KeyDTO">
+                <xs:sequence>
+                        <xs:element name="keyId" type="types:KeyIdDTO" />
+                        <xs:element name="keyValue" type="xs:hexBinary" />
+                        <xs:element name="keyAlgorithm" type="xs:string" />
+                        <xs:element name="keyLength" type="xs:int" />
+                </xs:sequence>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,15 @@
+##
+# Produce version information
+#
+# Description:
+#	This file should be included in top-level Makefile
+#
+##
+
+ifeq ($(VERSION_PRODUCT), )
+	VERSION_PRODUCT			= NextLabs Rights Management Java SDK
+	VERSION_MAJOR			= 1
+	VERSION_MINOR			= 0
+	VERSION_MAINTENANCE		= 7
+	VERSION_PATCH			= 1
+endif

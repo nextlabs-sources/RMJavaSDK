@@ -1,0 +1,201 @@
+# Make file to publish pcv and release builds
+#
+# Installers and build artifacts are published to \\nextlabs.com\share\data\build\pcv
+# or \\nextlabs.com\share\data\build\release. Typically, \\nextlabs.com\share\data is mapped
+# to s:/.
+#
+# The following variables must be defined in commandline:
+#	VERSION_BUILD_SHORT
+#	BUILD_DATE
+#
+# Example:
+#	make -f Makefile.publish VERSION_BUILD_SHORT=2088 BUILD_DATE=20110501 TYPE=pcv
+#	make -k -f Makefile.publish VERSION_BUILD_SHORT=2088 BUILD_DATE=20110501 TYPE=pcv installer_local
+#	make -k -f Makefile.publish VERSION_BUILD_SHORT=2088 BUILD_DATE=20110501 TYPE=pcv installer_local
+#	make -f Makefile.publish VERSION_BUILD_SHORT=2088 BUILD_DATE=20110501 TYPE=release
+#	make -f Makefile.publish VERSION_BUILD_SHORT=2088 BUILD_DATE=20110501 TYPE=release archive_bin
+
+
+#
+# Check for errors
+#
+
+ifeq ($(NLBUILDROOT),)
+  $(error NLBUILDROOT undefined.)
+endif
+
+ifeq ($(VERSION_BUILD_SHORT),)
+  $(error VERSION_BUILD_SHORT undefined.)
+endif
+
+ifeq ($(BUILD_DATE),)
+  $(error BUILD_DATE undefined.)
+endif
+
+ifeq ($(TYPE),)
+  $(error TYPE undefined.)
+endif
+
+ifneq ($(TYPE), pcv)
+ifneq ($(TYPE), release)
+  $(error Invalid TYPE $(TYPE).)
+endif
+endif
+
+ifeq ($(REPOSITORY_ROOT),)
+  $(error REPOSITORY_ROOT undefined.)
+endif
+
+
+#
+# Constants
+#
+
+include $(NLBUILDROOT)/scripts/Makefile.ver
+
+VERSION_STR_RMJS=$(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_MAINTENANCE).$(VERSION_PATCH)
+
+PUBLISH_LOCAL_RMJS_DIR=$(REPOSITORY_ROOT)/RightsManagementJavaSDK/$(VERSION_STR_RMJS)/$(VERSION_BUILD_SHORT)
+PUBLISH_LOCAL_ARTIFACT_DIR=$(REPOSITORY_ROOT)/artifacts/RightsManagementJavaSDK/$(VERSION_STR_RMJS)/$(VERSION_BUILD_SHORT)
+
+RMJS_ZIP_FILE_NAME=RMSDK-$(VERSION_STR_RMJS)-$(VERSION_BUILD_SHORT)-$(BUILD_DATE_LONG).zip
+RMJS_ZIP_FILE_NAME_BUILD=RMSDK-$(VERSION_STR_RMJS)-$(VERSION_BUILD_SHORT)-$(BUILD_DATE_LONG)-build.zip
+RMS_STARTERS_GUIDE_NAME=Starter_Guide.zip
+BUILD_MANIFEST_FILE_NAME=build.manifest
+
+TOP_BIN_DIR=$(NLBUILDROOT)/bin
+XLIB_DIR=$(NLBUILDROOT)/xlib
+INSTALL_DIR=$(NLBUILDROOT)
+
+INSTALL_BUILD_RMJS_DIR=$(INSTALL_DIR)/dist
+
+#
+# Info
+#
+
+$(info --------------------------------------------------------------)
+$(info [Build])
+$(info TYPE                          = $(TYPE)) 
+$(info VERSION_BUILD_SHORT           = $(VERSION_BUILD_SHORT)) 
+$(info BUILD_DATE                    = $(BUILD_DATE)) 
+$(info [Path])
+$(info PUBLISH_LOCAL_RMJS_DIR         = $(PUBLISH_LOCAL_RMJS_DIR)) 
+$(info PUBLISH_LOCAL_ARTIFACT_DIR    = $(PUBLISH_LOCAL_ARTIFACT_DIR))
+$(info TOP_BIN_DIR                   = $(TOP_BIN_DIR)) 
+$(info XLIB_DIR                      = $(XLIB_DIR)) 
+$(info INSTALL_DIR                   = $(INSTALL_DIR)) 
+$(info [File])
+$(info ZIP_FILE_NAME_BIN             = $(ZIP_FILE_NAME_BIN)) 
+$(info ZIP_FILE_NAME_XLIB            = $(ZIP_FILE_NAME_XLIB)) 
+$(info ZIP_FILE_NAME_INSTALL         = $(ZIP_FILE_NAME_INSTALL)) 
+$(info INSTALL_BUILD_RMJS_DIR         = $(INSTALL_BUILD_RMJS_DIR)) 
+$(info --------------------------------------------------------------)
+$(info )
+
+
+#
+# Targets
+#
+
+.PHONY: all
+all: product
+
+.PHONY: product
+product: rmjs 
+
+.PHONY: rmjs
+rmjs: rmjs_local
+
+.PHONY: rmjs_local
+rmjs_local: 
+	@echo "Publishing RM Java SDK to local file system"
+	@if [ ! -d $(INSTALL_BUILD_RMJS_DIR) ]; then			\
+		echo "$(INSTALL_BUILD_RMJS_DIR) does not exist" ;	\
+		exit 1 ;											\
+	fi
+	mkdir -p $(PUBLISH_LOCAL_RMJS_DIR)
+	cp -pf $(INSTALL_BUILD_RMJS_DIR)/RMSDK.zip $(PUBLISH_LOCAL_RMJS_DIR)/$(RMJS_ZIP_FILE_NAME)
+	cp -pf $(INSTALL_BUILD_RMJS_DIR)/$(RMS_STARTERS_GUIDE_NAME) $(PUBLISH_LOCAL_RMJS_DIR)/$(RMS_STARTERS_GUIDE_NAME)
+	ls -l $(PUBLISH_LOCAL_RMJS_DIR)
+	@echo "[BUILD MANIFEST]   Product Name       : Rights Management Java SDK"
+	@echo "[BUILD MANIFEST]   Installer Location : $(PUBLISH_LOCAL_RMJS_DIR)"
+	@echo "[BUILD MANIFEST]   Installer Package  : $$(cd $(PUBLISH_LOCAL_RMJS_DIR); ls -1 *.zip | tr '\n' ' ')"
+
+.PHONY: archive
+archive: archive_bin archive_xlib archive_install
+
+# Notes: Backup build binaries and symbols. We need symbol files (.pdb) to analyze dump
+# file.
+
+.PHONY: archive_bin
+archive_bin:
+	@echo "Archiving top-level bin directory"
+	@if [ ! -d $(TOP_BIN_DIR) ]; then					\
+		echo "$(TOP_BIN_DIR) does not exist" ;			\
+		exit 1 ;										\
+	fi
+	mkdir -p $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	cp -pf $(NLBUILDROOT)/build.config* $(NLBUILDROOT)/bin
+	cp -pf $(NLBUILDROOT)/build*.log $(NLBUILDROOT)/bin
+	cd $(NLBUILDROOT); zip -r -b . $(PUBLISH_LOCAL_ARTIFACT_DIR)/$(ZIP_FILE_NAME_BIN) bin -x bin/installer/*.zip
+	ls -l $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	@echo "[BUILD MANIFEST] Archive: $(PUBLISH_LOCAL_ARTIFACT_DIR)/$(ZIP_FILE_NAME_BIN)"
+
+# Notes: Backup external libraries we used in a build so that we can always repeat a
+# build at a later time. Notice that externals are not versioned and build scripts always
+# use the latest externals. As a result, we will not be able to gaurantee a build can 
+# be repeated with the same externals without backing up xlib.
+
+.PHONY: archive_xlib
+archive_xlib:
+	@echo "Archiving build tree xlib directory"
+	@if [ ! -d $(XLIB_DIR) ]; then						\
+		echo "$(XLIB_DIR) does not exist" ;				\
+		exit 1 ;										\
+	fi
+	mkdir -p $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	cd $(NLBUILDROOT); zip -r -b . $(PUBLISH_LOCAL_ARTIFACT_DIR)/$(ZIP_FILE_NAME_XLIB) xlib
+	ls -l $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	@echo "[BUILD MANIFEST] Archive: $(PUBLISH_LOCAL_ARTIFACT_DIR)/$(ZIP_FILE_NAME_XLIB)"
+	
+# Notes: Backup installer build artifacts so that we can patch installers without rebuilding.
+# All Fate intstallers are in /install directory.
+
+.PHONY: archive_install
+archive_install:
+	@echo "Archiving installer build directory"
+	@if [ ! -d $(INSTALL_DIR) ]; then						\
+		echo "$(INSTALL_DIR) does not exist" ;				\
+		exit 1 ;											\
+	fi
+	mkdir -p $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	cd $(NLBUILDROOT); zip -D -b . $(PUBLISH_LOCAL_ARTIFACT_DIR)/$(ZIP_FILE_NAME_INSTALL) *
+	cd $(NLBUILDROOT); zip -r -b . $(PUBLISH_LOCAL_ARTIFACT_DIR)/$(ZIP_FILE_NAME_INSTALL) build install -x \*setup\*.zip
+	ls -l $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	@echo "[BUILD MANIFEST] Archive: $(PUBLISH_LOCAL_ARTIFACT_DIR)/$(ZIP_FILE_NAME_INSTALL)"
+
+# Notes: Backup installer zip file since RM JavaSDK has a different requirement
+
+.PHONY: archive_package
+archive_package:
+	@echo "Archiving RMJavaSDK..."
+	@if [ ! -d $(INSTALL_DIR) ]; then						\
+		echo "$(INSTALL_DIR) does not exist" ;				\
+		exit 1 ;											\
+	fi
+	mkdir -p $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	cp -pf $(INSTALL_BUILD_RMJS_DIR)/RMSDK.zip $(PUBLISH_LOCAL_ARTIFACT_DIR)/$(RMJS_ZIP_FILE_NAME_BUILD)
+	cp -pf $(INSTALL_BUILD_RMJS_DIR)/$(RMS_STARTERS_GUIDE_NAME) $(PUBLISH_LOCAL_RMJS_DIR)/$(RMS_STARTERS_GUIDE_NAME)
+	ls -l $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	@echo "[BUILD MANIFEST] Archive: $(PUBLISH_LOCAL_ARTIFACT_DIR)/`ls $(PUBLISH_LOCAL_ARTIFACT_DIR)`"
+
+.PHONY: manifest
+manifest:
+	@echo "Publish build manifest to artifacts directory"
+	@if [ ! -f $(BUILD_MANIFEST_FILE_NAME) ]; then			\
+		echo "$(BUILD_MANIFEST_FILE_NAME) does not exist" ;	\
+		exit 1 ;											\
+	fi
+	mkdir -p $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	cp -pf $(NLBUILDROOT)/$(BUILD_MANIFEST_FILE_NAME) $(PUBLISH_LOCAL_ARTIFACT_DIR)
+	ls -l $(PUBLISH_LOCAL_ARTIFACT_DIR)

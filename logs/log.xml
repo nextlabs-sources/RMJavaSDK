@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+   Allatori Obfuscator v2.5 DEMO
+   Web: http://www.allatori.com
+
+   Log created: Thu Jan 29 18:02:15 SGT 2015
+-->
+
+<allatori>
+ <mapping>
+  <class old="com.nextlabs.nxl.interfaces.INxlFileMetaData" new="com.nextlabs.nxl.interfaces.INxlFileMetaData">
+  </class>
+  <class old="a" new="b">
+   <method old="a(Ljava/lang/String;)Ljava/lang/String;" new="a"/>
+  </class>
+  <class old="b" new="c">
+   <method old="b(Ljava/lang/String;)Ljava/lang/String;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.NewNxlDecryptionHandler" new="com.nextlabs.nxl.crypt.b">
+   <method old="close()V" new="close"/>
+   <method old="createUnwrappedFile()V" new="C"/>
+   <method old="decryptAndWriteFileContent(Ljava/io/RandomAccessFile;)V" new="a"/>
+   <method old="decryptFileContent()[[B" new="B"/>
+   <method old="getCEK(Lcom/nextlabs/nxl/pojos/CryptoHeaders;)[B" new="a"/>
+   <method old="getKey(Ljava/io/RandomAccessFile;Ljava/lang/String;[BJ)[B" new="a"/>
+   <method old="parseContent()Lcom/nextlabs/nxl/interfaces/INxlFile;" new="parseContent"/>
+   <method old="parseContent(Ljava/lang/String;)Lcom/nextlabs/nxl/interfaces/INxlFile;" new="parseContent"/>
+   <method old="parseContent(Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NewNxlFile;" new="a"/>
+   <method old="readBasicHeaders()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="c"/>
+   <method old="readCryptoHeaders()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="E"/>
+   <method old="readHeaders()Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="f"/>
+   <method old="readKeyEncryptionKey()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="d"/>
+   <method old="readMeta()Lcom/nextlabs/nxl/interfaces/INxlFileMetaData;" new="readMeta"/>
+   <method old="readPaddingData()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="F"/>
+   <method old="readPrimaryKeyInfo()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="b"/>
+   <method old="readRecoveryEncryptionKey()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="g"/>
+   <method old="readRecoveryKeyInfo()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="D"/>
+   <method old="readSectionTable()Lcom/nextlabs/nxl/pojos/SectionTable;" new="a"/>
+   <method old="readSections(I)Lcom/nextlabs/nxl/pojos/NXLSection;" new="a"/>
+   <method old="readSignatureHeaders()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="e"/>
+   <method old="validateChecksum([B)V" new="a"/>
+   <method old="validateHeaderInfo()V" new="A"/>
+   <field old="decryptedFileBytes [[B" new="c"/>
+   <field old="file Ljava/io/RandomAccessFile;" new="e"/>
+   <field old="metaData Lcom/nextlabs/nxl/pojos/NewNxlFileMetaData;" new="A"/>
+   <field old="nxlHeaders Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="d"/>
+   <field old="readTime J" new="b"/>
+   <field old="sectionTable Lcom/nextlabs/nxl/pojos/SectionTable;" new="a"/>
+   <field old="unwrappedFile Lcom/nextlabs/nxl/pojos/NewNxlFile;" new="C"/>
+   <field old="util Lcom/nextlabs/nxl/crypt/AESEncryptionUtil;" new="B"/>
+   <field old="writeTime J" new="D"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NxlFile" new="com.nextlabs.nxl.pojos.NxlFile">
+   <method old="getDecryptedBytes()[[B" new="getDecryptedBytes"/>
+   <method old="getMetaData()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="getMetaData"/>
+   <method old="isInMemory()Z" new="isInMemory"/>
+   <method old="setDecryptedBytes([[B)V" new="setDecryptedBytes"/>
+   <method old="setInMemory(Z)V" new="setInMemory"/>
+   <method old="setMetaData(Lcom/nextlabs/nxl/pojos/NxlFileMetaData;)V" new="setMetaData"/>
+   <field old="decryptedBytes [[B" new="decryptedBytes"/>
+   <field old="inMemory Z" new="inMemory"/>
+   <field old="metaData Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="metaData"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NewNxlFile" new="com.nextlabs.nxl.pojos.NewNxlFile">
+   <method old="getDecryptedBytes()[[B" new="getDecryptedBytes"/>
+   <method old="getMetaData()Lcom/nextlabs/nxl/pojos/NewNxlFileMetaData;" new="getMetaData"/>
+   <method old="setDecryptedBytes([[B)V" new="setDecryptedBytes"/>
+   <method old="setMetaData(Lcom/nextlabs/nxl/pojos/NewNxlFileMetaData;)V" new="setMetaData"/>
+   <field old="decryptedBytes [[B" new="decryptedBytes"/>
+   <field old="metaData Lcom/nextlabs/nxl/pojos/NewNxlFileMetaData;" new="metaData"/>
+  </class>
+  <class old="com.nextlabs.nxl.util.EncryptionUtil" new="com.nextlabs.nxl.util.EncryptionUtil">
+   <method old="writeBytes(Ljava/io/RandomAccessFile;[BJ)V" new="writeBytes"/>
+   <method old="writeInt(Ljava/io/RandomAccessFile;IJ)V" new="writeInt"/>
+   <method old="writeLong(Ljava/io/RandomAccessFile;JJ)V" new="writeLong"/>
+   <method old="writeShort(Ljava/io/RandomAccessFile;SJ)V" new="writeShort"/>
+   <method old="writeString(Ljava/io/RandomAccessFile;Ljava/lang/String;J)V" new="writeString"/>
+   <method old="writeWCharArr(Ljava/io/RandomAccessFile;Ljava/lang/String;I)V" new="writeWCharArr"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NXLHeaders" new="com.nextlabs.nxl.pojos.NXLHeaders">
+   <method old="getBasicHeaders()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="getBasicHeaders"/>
+   <method old="getCryptoHeaders()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="getCryptoHeaders"/>
+   <method old="getSignatureHeaders()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="getSignatureHeaders"/>
+   <method old="setBasicHeaders(Lcom/nextlabs/nxl/pojos/BasicHeaders;)V" new="setBasicHeaders"/>
+   <method old="setCryptoHeaders(Lcom/nextlabs/nxl/pojos/CryptoHeaders;)V" new="setCryptoHeaders"/>
+   <method old="setSignatureHeaders(Lcom/nextlabs/nxl/pojos/SignatureHeaders;)V" new="setSignatureHeaders"/>
+   <field old="basicHeaders Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="basicHeaders"/>
+   <field old="cryptoHeaders Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="cryptoHeaders"/>
+   <field old="signatureHeaders Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="signatureHeaders"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NXLKeKeyID" new="com.nextlabs.nxl.pojos.NXLKeKeyID">
+   <method old="getAlgorithm()S" new="getAlgorithm"/>
+   <method old="getId()[B" new="getId"/>
+   <method old="getIdSize()S" new="getIdSize"/>
+   <method old="getNextlabsKeyId()Lcom/nextlabs/nxl/pojos/NextlabsKeyId;" new="getNextlabsKeyId"/>
+   <method old="setAlgorithm(S)V" new="setAlgorithm"/>
+   <method old="setId([B)V" new="setId"/>
+   <method old="setIdSize(S)V" new="setIdSize"/>
+   <method old="setNextlabsKeyId(Lcom/nextlabs/nxl/pojos/NextlabsKeyId;)V" new="setNextlabsKeyId"/>
+   <field old="algorithm S" new="algorithm"/>
+   <field old="id [B" new="id"/>
+   <field old="idSize S" new="idSize"/>
+   <field old="nextlabsKeyId Lcom/nextlabs/nxl/pojos/NextlabsKeyId;" new="nextlabsKeyId"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.RandomAccessFileWithMeta" new="com.nextlabs.nxl.pojos.RandomAccessFileWithMeta">
+   <method old="getFile()Ljava/io/File;" new="getFile"/>
+   <method old="getRandomAccessFile()Ljava/io/RandomAccessFile;" new="getRandomAccessFile"/>
+   <method old="setFile(Ljava/io/File;)V" new="setFile"/>
+   <method old="setRandomAccessFile(Ljava/io/RandomAccessFile;)V" new="setRandomAccessFile"/>
+   <field old="file Ljava/io/File;" new="file"/>
+   <field old="randomAccessFile Ljava/io/RandomAccessFile;" new="randomAccessFile"/>
+  </class>
+  <class old="com.nextlabs.nxl.interfaces.IEncryptionHandler" new="com.nextlabs.nxl.interfaces.IEncryptionHandler">
+   <method old="addSection(Ljava/lang/String;ILjava/util/Map;)V" new="addSection"/>
+   <method old="close()V" new="close"/>
+   <method old="encrypt()Lcom/nextlabs/nxl/pojos/NewNxlFileMetaData;" new="encrypt"/>
+  </class>
+  <class old="com.nextlabs.nxl.util.DecryptionUtil" new="com.nextlabs.nxl.util.DecryptionUtil">
+   <method old="readBytes(Ljava/io/RandomAccessFile;JI)[B" new="readBytes"/>
+   <method old="readInt(Ljava/io/RandomAccessFile;II)I" new="readInt"/>
+   <method old="readKey(Ljava/io/RandomAccessFile;II)[B" new="readKey"/>
+   <method old="readLong(Ljava/io/RandomAccessFile;II)J" new="readLong"/>
+   <method old="readShort(Ljava/io/RandomAccessFile;II)S" new="readShort"/>
+   <method old="readUnsignedChar(Ljava/io/RandomAccessFile;II)Ljava/lang/String;" new="readUnsignedChar"/>
+   <method old="readWCharArr(Ljava/io/RandomAccessFile;II)[C" new="readWCharArr"/>
+   <method old="readWCharMap(Ljava/io/RandomAccessFile;II)Ljava/util/Map;" new="readWCharMap"/>
+   <method old="readWCharSectionMap(Ljava/io/RandomAccessFile;II)Ljava/util/Map;" new="readWCharSectionMap"/>
+   <method old="readWCharStr(Ljava/io/RandomAccessFile;II)Ljava/lang/String;" new="readWCharStr"/>
+   <method old="roundToSize(II)I" new="roundToSize"/>
+   <method old="roundToSize(JI)J" new="roundToSize"/>
+   <method old="toHex([B)Ljava/lang/String;" new="toHex"/>
+   <field old="MAX_SECTION_COUNT I" new="MAX_SECTION_COUNT"/>
+   <field old="NXL_ALGORITHM_AES128 I" new="NXL_ALGORITHM_AES128"/>
+   <field old="NXL_ALGORITHM_AES256 I" new="NXL_ALGORITHM_AES256"/>
+   <field old="NXL_ALGORITHM_MD I" new="NXL_ALGORITHM_MD"/>
+   <field old="NXL_ALGORITHM_NONE I" new="NXL_ALGORITHM_NONE"/>
+   <field old="NXL_ALGORITHM_RSA1024 I" new="NXL_ALGORITHM_RSA1024"/>
+   <field old="NXL_ALGORITHM_RSA2048 I" new="NXL_ALGORITHM_RSA2048"/>
+   <field old="NXL_ALGORITHM_SHA1 I" new="NXL_ALGORITHM_SHA1"/>
+   <field old="NXL_ALGORITHM_SHA256 I" new="NXL_ALGORITHM_SHA256"/>
+   <field old="NXL_CBC_SIZE I" new="NXL_CBC_SIZE"/>
+   <field old="NXL_CRYPTO_FLAGS_NONE I" new="NXL_CRYPTO_FLAGS_NONE"/>
+   <field old="NXL_DEFAULT_MSG Ljava/lang/String;" new="NXL_DEFAULT_MSG"/>
+   <field old="NXL_FLAGS_NONE I" new="NXL_FLAGS_NONE"/>
+   <field old="NXL_MAJOR_VERSION_10 I" new="NXL_MAJOR_VERSION_10"/>
+   <field old="NXL_MINOR_VERSION_10 I" new="NXL_MINOR_VERSION_10"/>
+   <field old="NXL_MIN_SIZE I" new="NXL_MIN_SIZE"/>
+   <field old="NXL_PAGE_SIZE I" new="NXL_PAGE_SIZE"/>
+   <field old="NXL_SECTION_ATTRIBUTES Ljava/lang/String;" new="NXL_SECTION_ATTRIBUTES"/>
+   <field old="NXL_SECTION_RIGHTS Ljava/lang/String;" new="NXL_SECTION_RIGHTS"/>
+   <field old="NXL_SECTION_TAGS Ljava/lang/String;" new="NXL_SECTION_TAGS"/>
+   <field old="NXL_SIGNATURE Ljava/lang/String;" new="NXL_SIGNATURE"/>
+   <field old="NX_CEK_MAX_LEN I" new="NX_CEK_MAX_LEN"/>
+   <field old="NX_KEK_MAX_LEN I" new="NX_KEK_MAX_LEN"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.DecryptedNXLFile" new="com.nextlabs.nxl.pojos.DecryptedNXLFile">
+   <method old="getDecryptedFile()[B" new="getDecryptedFile"/>
+   <method old="getNxlHeaders()Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="getNxlHeaders"/>
+   <method old="getSectionTable()Lcom/nextlabs/nxl/pojos/SectionTable;" new="getSectionTable"/>
+   <method old="setDecryptedFile([B)V" new="setDecryptedFile"/>
+   <method old="setNxlHeaders(Lcom/nextlabs/nxl/pojos/NXLHeaders;)V" new="setNxlHeaders"/>
+   <method old="setSectionTable(Lcom/nextlabs/nxl/pojos/SectionTable;)V" new="setSectionTable"/>
+   <field old="decryptedFile [B" new="decryptedFile"/>
+   <field old="nxlHeaders Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="nxlHeaders"/>
+   <field old="sectionTable Lcom/nextlabs/nxl/pojos/SectionTable;" new="sectionTable"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.EncryptionHandler" new="com.nextlabs.nxl.crypt.h">
+   <method old="addDefaultSections()V" new="E"/>
+   <method old="addSection(Ljava/lang/String;ILjava/util/Map;)V" new="A"/>
+   <method old="addSection(Ljava/lang/String;ILjava/util/Map;I)V" new="a"/>
+   <method old="calculateSectionTableChecksum()[B" new="f"/>
+   <method old="close()V" new="e"/>
+   <method old="createHeaders()V" new="h"/>
+   <method old="createNextlabsKeyId(Lcom/nextlabs/service/keyservice/IKey;Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NextlabsKeyId;" new="a"/>
+   <method old="createNxlPadding()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="c"/>
+   <method old="createSection(Ljava/lang/String;ILjava/util/Map;)Lcom/nextlabs/nxl/pojos/NXLSection;" new="a"/>
+   <method old="createThumbPrint()[B" new="D"/>
+   <method old="encrypt()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="a"/>
+   <method old="encryptContent()V" new="A"/>
+   <method old="generateCEKey()[B" new="C"/>
+   <method old="getKeyId(SLjava/lang/String;Lcom/nextlabs/service/keyservice/IKey;)[B" new="a"/>
+   <method old="getLatestKey(Ljava/io/RandomAccessFile;Ljava/lang/String;)Lcom/nextlabs/service/keyservice/IKey;" new="a"/>
+   <method old="writeBasicHeaders()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="H"/>
+   <method old="writeCryptoHeaders()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="i"/>
+   <method old="writeKeyEncryptionKey()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="G"/>
+   <method old="writePrimaryKeyInfo()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="B"/>
+   <method old="writeSectionTable()V" new="F"/>
+   <method old="writeSectionTableMetaData()V" new="b"/>
+   <method old="writeSections()V" new="d"/>
+   <method old="writeSignatureHeaders()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="g"/>
+   <field old="KEYRINGNAME_NL_SHARE Ljava/lang/String;" new="d"/>
+   <field old="attributes Ljava/util/Map;" new="G"/>
+   <field old="ceKey [B" new="c"/>
+   <field old="fileName Ljava/lang/String;" new="b"/>
+   <field old="metadata Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="D"/>
+   <field old="nxlFile Ljava/io/RandomAccessFile;" new="B"/>
+   <field old="nxlHeaders Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="A"/>
+   <field old="originalFile Ljava/io/RandomAccessFile;" new="g"/>
+   <field old="pcKey [B" new="e"/>
+   <field old="rights Ljava/util/Map;" new="C"/>
+   <field old="sectionList Ljava/util/ArrayList;" new="E"/>
+   <field old="sectionTable Lcom/nextlabs/nxl/pojos/SectionTable;" new="a"/>
+   <field old="tags Ljava/util/Map;" new="f"/>
+   <field old="util Lcom/nextlabs/nxl/crypt/AESEncryptionUtil;" new="F"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.PolicyControllerDetails" new="com.nextlabs.nxl.pojos.PolicyControllerDetails">
+   <method old="getKeyStoreName()Ljava/lang/String;" new="getKeyStoreName"/>
+   <method old="getKeyStorePassword()Ljava/lang/String;" new="getKeyStorePassword"/>
+   <method old="getPcHostName()Ljava/lang/String;" new="getPcHostName"/>
+   <method old="getRmiPortNum()I" new="getRmiPortNum"/>
+   <method old="getTrustStoreName()Ljava/lang/String;" new="getTrustStoreName"/>
+   <method old="getTrustStorePasswd()Ljava/lang/String;" new="getTrustStorePasswd"/>
+   <method old="setKeyStoreName(Ljava/lang/String;)V" new="setKeyStoreName"/>
+   <method old="setKeyStorePassword(Ljava/lang/String;)V" new="setKeyStorePassword"/>
+   <method old="setPcHostName(Ljava/lang/String;)V" new="setPcHostName"/>
+   <method old="setRmiPortNum(I)V" new="setRmiPortNum"/>
+   <method old="setTrustStoreName(Ljava/lang/String;)V" new="setTrustStoreName"/>
+   <method old="setTrustStorePasswd(Ljava/lang/String;)V" new="setTrustStorePasswd"/>
+   <field old="keyStoreName Ljava/lang/String;" new="keyStoreName"/>
+   <field old="keyStorePassword Ljava/lang/String;" new="keyStorePassword"/>
+   <field old="pcHostName Ljava/lang/String;" new="pcHostName"/>
+   <field old="rmiPortNum I" new="rmiPortNum"/>
+   <field old="trustStoreName Ljava/lang/String;" new="trustStoreName"/>
+   <field old="trustStorePasswd Ljava/lang/String;" new="trustStorePasswd"/>
+  </class>
+  <class old="com.nextlabs.nxl.interfaces.INxlFile" new="com.nextlabs.nxl.interfaces.INxlFile">
+  </class>
+  <class old="com_allatori_string_decryptor" new="a">
+   <method old="DecryptString(Ljava/lang/String;)Ljava/lang/String;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.legacy.NLTagPart" new="com.nextlabs.nxl.legacy.NLTagPart">
+   <method old="getNltMajorVersion()Ljava/lang/String;" new="getNltMajorVersion"/>
+   <method old="getNltMinorVersion()Ljava/lang/String;" new="getNltMinorVersion"/>
+   <method old="getStreamName()Ljava/lang/String;" new="getStreamName"/>
+   <method old="getStreamSize()I" new="getStreamSize"/>
+   <method old="getTags()Ljava/util/Map;" new="getTags"/>
+   <method old="getTagsSize()I" new="getTagsSize"/>
+   <method old="setNltMajorVersion(Ljava/lang/String;)V" new="setNltMajorVersion"/>
+   <method old="setNltMinorVersion(Ljava/lang/String;)V" new="setNltMinorVersion"/>
+   <method old="setStreamName(Ljava/lang/String;)V" new="setStreamName"/>
+   <method old="setStreamSize(I)V" new="setStreamSize"/>
+   <method old="setTags(Ljava/util/Map;)V" new="setTags"/>
+   <method old="setTagsSize(I)V" new="setTagsSize"/>
+   <field old="nltMajorVersion Ljava/lang/String;" new="nltMajorVersion"/>
+   <field old="nltMinorVersion Ljava/lang/String;" new="nltMinorVersion"/>
+   <field old="streamName Ljava/lang/String;" new="streamName"/>
+   <field old="streamSize I" new="streamSize"/>
+   <field old="tags Ljava/util/Map;" new="tags"/>
+   <field old="tagsSize I" new="tagsSize"/>
+  </class>
+  <class old="com.nextlabs.nxl.legacy.OldNxlFile" new="com.nextlabs.nxl.legacy.OldNxlFile">
+   <method old="getMetaData()Lcom/nextlabs/nxl/legacy/OldNXLFileMetaData;" new="getMetaData"/>
+   <method old="getNxlFilePart()Lcom/nextlabs/nxl/legacy/NXLFilePart;" new="getNxlFilePart"/>
+   <method old="setMetaData(Lcom/nextlabs/nxl/legacy/OldNXLFileMetaData;)V" new="setMetaData"/>
+   <method old="setNxlFilePart(Lcom/nextlabs/nxl/legacy/NXLFilePart;)V" new="setNxlFilePart"/>
+   <field old="metaData Lcom/nextlabs/nxl/legacy/OldNXLFileMetaData;" new="metaData"/>
+   <field old="nxlFilePart Lcom/nextlabs/nxl/legacy/NXLFilePart;" new="nxlFilePart"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NXLKeyBlob" new="com.nextlabs.nxl.pojos.NXLKeyBlob">
+   <method old="getCeKey()[B" new="getCeKey"/>
+   <method old="getKeyID()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="getKeyID"/>
+   <method old="setCeKey([B)V" new="setCeKey"/>
+   <method old="setKeyID(Lcom/nextlabs/nxl/pojos/NXLKeKeyID;)V" new="setKeyID"/>
+   <field old="CeKey [B" new="CeKey"/>
+   <field old="NXLKeyID Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="NXLKeyID"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.EncryptionFactory" new="com.nextlabs.nxl.crypt.d">
+   <method old="getEncryptionHandler(ILcom/nextlabs/nxl/pojos/RandomAccessFileWithMeta;Lcom/nextlabs/nxl/pojos/RandomAccessFileWithMeta;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)Lcom/nextlabs/nxl/interfaces/IEncryptionHandler;" new="a"/>
+   <method old="getInstance()Lcom/nextlabs/nxl/crypt/EncryptionFactory;" new="a"/>
+   <field old="encryptionFactory Lcom/nextlabs/nxl/crypt/EncryptionFactory;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.DecryptionManager" new="com.nextlabs.nxl.crypt.e">
+   <method old="close()V" new="a"/>
+   <method old="createInputFile(Ljava/lang/String;)Ljava/io/File;" new="a"/>
+   <method old="decryptFile(Ljava/lang/String;)Lcom/nextlabs/nxl/interfaces/INxlFile;" new="A"/>
+   <method old="decryptFile(Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFile;" new="b"/>
+   <method old="getNXLVersion(Ljava/io/RandomAccessFile;)I" new="a"/>
+   <method old="getOutputFilePath()Ljava/lang/String;" new="B"/>
+   <method old="getVersion()I" new="A"/>
+   <method old="init(Ljava/io/File;)V" new="a"/>
+   <method old="main([Ljava/lang/String;)V" new="main"/>
+   <method old="readMeta()Lcom/nextlabs/nxl/interfaces/INxlFileMetaData;" new="b"/>
+   <method old="readMeta()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="c"/>
+   <method old="setVersion(I)V" new="a"/>
+   <field old="NXLFILE_EXTENSION Ljava/lang/String;" new="b"/>
+   <field old="handler Lcom/nextlabs/nxl/crypt/DecryptionHandler;" new="a"/>
+   <field old="handler Lcom/nextlabs/nxl/interfaces/IDecryptionHandler;" new="A"/>
+   <field old="outputFilePath Ljava/lang/String;" new="B"/>
+   <field old="version I" new="a"/>
+  </class>
+  <class old="com.nextlabs.keymanagement.KeyRetrievalManager" new="com.nextlabs.keymanagement.KeyRetrievalManager">
+   <method old="getInstance()Lcom/nextlabs/keymanagement/KeyRetrievalManager;" new="getInstance"/>
+   <method old="getKey([BLjava/lang/String;)Lcom/nextlabs/service/keyservice/IKey;" new="getKey"/>
+   <method old="getKey([BLjava/lang/String;[BJ)Lcom/nextlabs/service/keyservice/IKey;" new="getKey"/>
+   <method old="getKeyServiceClient()Lcom/nextlabs/client/keyservice/KeyServiceSDK;" new="getKeyServiceClient"/>
+   <method old="initKeyMgmtSDK()V" new="initKeyMgmtSDK"/>
+   <method old="resetKeyServiceClient()V" new="resetKeyServiceClient"/>
+   <method old="shutDown()V" new="shutDown"/>
+   <field old="cachedKeyMap Ljava/util/HashMap;" new="cachedKeyMap"/>
+   <field old="executor Ljava/util/concurrent/ExecutorService;" new="executor"/>
+   <field old="instance Lcom/nextlabs/keymanagement/KeyRetrievalManager;" new="instance"/>
+   <field old="keyCache Ljava/util/HashMap;" new="keyCache"/>
+   <field old="keyServiceClient Lcom/nextlabs/client/keyservice/KeyServiceSDK;" new="keyServiceClient"/>
+  </class>
+  <class old="com.nextlabs.nxl.legacy.OldNXLFileMetaData" new="com.nextlabs.nxl.legacy.OldNXLFileMetaData">
+   <method old="getHeaderSize()I" new="getHeaderSize"/>
+   <method old="getNlTagPart()Lcom/nextlabs/nxl/legacy/NLTagPart;" new="getNlTagPart"/>
+   <method old="getNxlMajorVersion()Ljava/lang/String;" new="getNxlMajorVersion"/>
+   <method old="getNxlMinorVersion()Ljava/lang/String;" new="getNxlMinorVersion"/>
+   <method old="getOrigFileName()Ljava/lang/String;" new="getOrigFileName"/>
+   <method old="getStreamCount()I" new="getStreamCount"/>
+   <method old="setHeaderSize(I)V" new="setHeaderSize"/>
+   <method old="setNlTagPart(Lcom/nextlabs/nxl/legacy/NLTagPart;)V" new="setNlTagPart"/>
+   <method old="setNxlMajorVersion(Ljava/lang/String;)V" new="setNxlMajorVersion"/>
+   <method old="setNxlMinorVersion(Ljava/lang/String;)V" new="setNxlMinorVersion"/>
+   <method old="setOrigFileName(Ljava/lang/String;)V" new="setOrigFileName"/>
+   <method old="setStreamCount(I)V" new="setStreamCount"/>
+   <field old="headerSize I" new="headerSize"/>
+   <field old="nlTagPart Lcom/nextlabs/nxl/legacy/NLTagPart;" new="nlTagPart"/>
+   <field old="nxlMajorVersion Ljava/lang/String;" new="nxlMajorVersion"/>
+   <field old="nxlMinorVersion Ljava/lang/String;" new="nxlMinorVersion"/>
+   <field old="origFileName Ljava/lang/String;" new="origFileName"/>
+   <field old="streamCount I" new="streamCount"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.CryptoHeaders" new="com.nextlabs.nxl.pojos.CryptoHeaders">
+   <method old="getAlgorithm()I" new="getAlgorithm"/>
+   <method old="getAllocateLength()J" new="getAllocateLength"/>
+   <method old="getCbcSize()I" new="getCbcSize"/>
+   <method old="getContentLength()J" new="getContentLength"/>
+   <method old="getNxlPadding()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="getNxlPadding"/>
+   <method old="getPrimaryKey()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="getPrimaryKey"/>
+   <method old="getRecoveryKey()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="getRecoveryKey"/>
+   <method old="setAlgorithm(I)V" new="setAlgorithm"/>
+   <method old="setAllocateLength(J)V" new="setAllocateLength"/>
+   <method old="setCbcSize(I)V" new="setCbcSize"/>
+   <method old="setContentLength(J)V" new="setContentLength"/>
+   <method old="setNxlPadding(Lcom/nextlabs/nxl/pojos/NxlPadding;)V" new="setNxlPadding"/>
+   <method old="setPrimaryKey(Lcom/nextlabs/nxl/pojos/NXLKeyBlob;)V" new="setPrimaryKey"/>
+   <method old="setRecoveryKey(Lcom/nextlabs/nxl/pojos/NXLKeyBlob;)V" new="setRecoveryKey"/>
+   <field old="algorithm I" new="algorithm"/>
+   <field old="allocateLength J" new="allocateLength"/>
+   <field old="cbcSize I" new="cbcSize"/>
+   <field old="contentLength J" new="contentLength"/>
+   <field old="nxlPadding Lcom/nextlabs/nxl/pojos/NxlPadding;" new="nxlPadding"/>
+   <field old="primaryKey Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="primaryKey"/>
+   <field old="recoveryKey Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="recoveryKey"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NxlFileMetaData" new="com.nextlabs.nxl.pojos.NxlFileMetaData">
+   <method old="getAttr()Ljava/util/Map;" new="getAttr"/>
+   <method old="getRights()Ljava/util/Map;" new="getRights"/>
+   <method old="getTags()Ljava/util/Map;" new="getTags"/>
+   <field old="sectionTable Lcom/nextlabs/nxl/pojos/SectionTable;" new="sectionTable"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NXLSection" new="com.nextlabs.nxl.pojos.NXLSection">
+   <method old="getChecksum()I" new="getChecksum"/>
+   <method old="getName()Ljava/lang/String;" new="getName"/>
+   <method old="getSectionData()Ljava/util/Map;" new="getSectionData"/>
+   <method old="getSize()I" new="getSize"/>
+   <method old="setChecksum(I)V" new="setChecksum"/>
+   <method old="setName(Ljava/lang/String;)V" new="setName"/>
+   <method old="setSectionData(Ljava/util/Map;)V" new="setSectionData"/>
+   <method old="setSize(I)V" new="setSize"/>
+   <field old="checksum I" new="checksum"/>
+   <field old="name Ljava/lang/String;" new="name"/>
+   <field old="sectionData Ljava/util/Map;" new="sectionData"/>
+   <field old="size I" new="size"/>
+  </class>
+  <class old="com.nextlabs.nxl.legacy.NXLFilePart" new="com.nextlabs.nxl.legacy.NXLFilePart">
+   <method old="getDecryptedFileContent()[B" new="getDecryptedFileContent"/>
+   <method old="getEncryptedKey()Ljava/lang/String;" new="getEncryptedKey"/>
+   <method old="getFileSize()I" new="getFileSize"/>
+   <method old="getFlags()I" new="getFlags"/>
+   <method old="getKeyID()[B" new="getKeyID"/>
+   <method old="getKeyRingName()Ljava/lang/String;" new="getKeyRingName"/>
+   <method old="getNxlMajorVersion()Ljava/lang/String;" new="getNxlMajorVersion"/>
+   <method old="getNxlMinorVersion()Ljava/lang/String;" new="getNxlMinorVersion"/>
+   <method old="getPaddingData()[B" new="getPaddingData"/>
+   <method old="getPaddingLength()I" new="getPaddingLength"/>
+   <method old="getStreamName()Ljava/lang/String;" new="getStreamName"/>
+   <method old="getStreamSize()I" new="getStreamSize"/>
+   <method old="setDecryptedFileContent([B)V" new="setDecryptedFileContent"/>
+   <method old="setEncryptedKey(Ljava/lang/String;)V" new="setEncryptedKey"/>
+   <method old="setFileSize(I)V" new="setFileSize"/>
+   <method old="setFlags(I)V" new="setFlags"/>
+   <method old="setKeyID([B)V" new="setKeyID"/>
+   <method old="setKeyRingName(Ljava/lang/String;)V" new="setKeyRingName"/>
+   <method old="setNxlMajorVersion(Ljava/lang/String;)V" new="setNxlMajorVersion"/>
+   <method old="setNxlMinorVersion(Ljava/lang/String;)V" new="setNxlMinorVersion"/>
+   <method old="setPaddingData([B)V" new="setPaddingData"/>
+   <method old="setPaddingLength(I)V" new="setPaddingLength"/>
+   <method old="setStreamName(Ljava/lang/String;)V" new="setStreamName"/>
+   <method old="setStreamSize(I)V" new="setStreamSize"/>
+   <field old="decryptedFileContent [B" new="decryptedFileContent"/>
+   <field old="encryptedKey Ljava/lang/String;" new="encryptedKey"/>
+   <field old="fileSize I" new="fileSize"/>
+   <field old="flags I" new="flags"/>
+   <field old="keyID [B" new="keyID"/>
+   <field old="keyRingName Ljava/lang/String;" new="keyRingName"/>
+   <field old="nxlMajorVersion Ljava/lang/String;" new="nxlMajorVersion"/>
+   <field old="nxlMinorVersion Ljava/lang/String;" new="nxlMinorVersion"/>
+   <field old="paddingData [B" new="paddingData"/>
+   <field old="paddingLength I" new="paddingLength"/>
+   <field old="streamName Ljava/lang/String;" new="streamName"/>
+   <field old="streamSize I" new="streamSize"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.NewNxlEncryptionHandler" new="com.nextlabs.nxl.crypt.a">
+   <method old="addDefaultSections()V" new="h"/>
+   <method old="addSection(Ljava/lang/String;ILjava/util/Map;)V" new="addSection"/>
+   <method old="addSection(Ljava/lang/String;ILjava/util/Map;I)V" new="a"/>
+   <method old="calculateSectionTableChecksum()[B" new="C"/>
+   <method old="close()V" new="close"/>
+   <method old="createHeaders()V" new="c"/>
+   <method old="createNextlabsKeyId(Lcom/nextlabs/service/keyservice/IKey;Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NextlabsKeyId;" new="a"/>
+   <method old="createNxlPadding()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="f"/>
+   <method old="createSection(Ljava/lang/String;ILjava/util/Map;)Lcom/nextlabs/nxl/pojos/NXLSection;" new="a"/>
+   <method old="createThumbPrint()[B" new="G"/>
+   <method old="encrypt()Lcom/nextlabs/nxl/pojos/NewNxlFileMetaData;" new="encrypt"/>
+   <method old="encryptContent()V" new="A"/>
+   <method old="generateCEKey()[B" new="a"/>
+   <method old="getKeyId(SLjava/lang/String;Lcom/nextlabs/service/keyservice/IKey;)[B" new="a"/>
+   <method old="getLatestKey(Ljava/io/RandomAccessFile;Ljava/lang/String;)Lcom/nextlabs/service/keyservice/IKey;" new="a"/>
+   <method old="writeBasicHeaders()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="F"/>
+   <method old="writeCryptoHeaders()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="d"/>
+   <method old="writeKeyEncryptionKey()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="E"/>
+   <method old="writePrimaryKeyInfo()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="b"/>
+   <method old="writeSectionTable()V" new="B"/>
+   <method old="writeSectionTableMetaData()V" new="e"/>
+   <method old="writeSections()V" new="g"/>
+   <method old="writeSignatureHeaders()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="D"/>
+   <field old="KEYRINGNAME_NL_SHARE Ljava/lang/String;" new="D"/>
+   <field old="attributes Ljava/util/Map;" new="c"/>
+   <field old="ceKey [B" new="e"/>
+   <field old="fileName Ljava/lang/String;" new="C"/>
+   <field old="metadata Lcom/nextlabs/nxl/pojos/NewNxlFileMetaData;" new="B"/>
+   <field old="nxlFile Ljava/io/RandomAccessFile;" new="G"/>
+   <field old="nxlHeaders Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="b"/>
+   <field old="originalFile Ljava/io/RandomAccessFile;" new="h"/>
+   <field old="pcKey [B" new="E"/>
+   <field old="readTime J" new="g"/>
+   <field old="rights Ljava/util/Map;" new="A"/>
+   <field old="sectionList Ljava/util/ArrayList;" new="H"/>
+   <field old="sectionTable Lcom/nextlabs/nxl/pojos/SectionTable;" new="d"/>
+   <field old="tags Ljava/util/Map;" new="a"/>
+   <field old="util Lcom/nextlabs/nxl/crypt/AESEncryptionUtil;" new="F"/>
+   <field old="writeTime J" new="f"/>
+  </class>
+  <class old="com.nextlabs.nxl.interfaces.IDecryptionHandler" new="com.nextlabs.nxl.interfaces.IDecryptionHandler">
+   <method old="close()V" new="close"/>
+   <method old="parseContent()Lcom/nextlabs/nxl/interfaces/INxlFile;" new="parseContent"/>
+   <method old="parseContent(Ljava/lang/String;)Lcom/nextlabs/nxl/interfaces/INxlFile;" new="parseContent"/>
+   <method old="readMeta()Lcom/nextlabs/nxl/interfaces/INxlFileMetaData;" new="readMeta"/>
+  </class>
+  <class old="com.nextlabs.keymanagement.KeyRetrievalManager$1" new="com.nextlabs.keymanagement.KeyRetrievalManager$1">
+   <method old="call()Lcom/nextlabs/client/keyservice/KeyServiceSDK;" new="call"/>
+   <method old="call()Ljava/lang/Object;" new="call"/>
+   <field old="this$0 Lcom/nextlabs/keymanagement/KeyRetrievalManager;" new="this$0"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.RightsManager" new="com.nextlabs.nxl.crypt.RightsManager">
+   <method old="cleanup()V" new="cleanup"/>
+   <method old="decrypt(Ljava/io/File;Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFile;" new="decrypt"/>
+   <method old="decrypt(Ljava/lang/String;Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFile;" new="decrypt"/>
+   <method old="encrypt(Ljava/io/File;Ljava/io/File;ILjava/util/Map;Ljava/util/Map;Ljava/util/Map;)V" new="encrypt"/>
+   <method old="encrypt(Ljava/io/File;Ljava/io/File;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V" new="encrypt"/>
+   <method old="encrypt(Ljava/lang/String;Ljava/lang/String;ILjava/util/Map;Ljava/util/Map;Ljava/util/Map;)V" new="encrypt"/>
+   <method old="encrypt(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V" new="encrypt"/>
+   <method old="getMetaData(Lcom/nextlabs/nxl/crypt/DecryptionManager;)Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="getMetaData"/>
+   <method old="getMetaData(Lcom/nextlabs/nxl/crypt/e;)Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="getMetaData"/>
+   <method old="readMeta(Ljava/io/File;)Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="readMeta"/>
+   <method old="readMeta(Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="readMeta"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.SectionTable" new="com.nextlabs.nxl.pojos.SectionTable">
+   <method old="getAttr()Ljava/util/Map;" new="getAttr"/>
+   <method old="getChecksum()[B" new="getChecksum"/>
+   <method old="getCount()I" new="getCount"/>
+   <method old="getRights()Ljava/util/Map;" new="getRights"/>
+   <method old="getSections()[Lcom/nextlabs/nxl/pojos/NXLSection;" new="getSections"/>
+   <method old="getTags()Ljava/util/Map;" new="getTags"/>
+   <method old="setAttr(Ljava/util/Map;)V" new="setAttr"/>
+   <method old="setChecksum([B)V" new="setChecksum"/>
+   <method old="setCount(I)V" new="setCount"/>
+   <method old="setRights(Ljava/util/Map;)V" new="setRights"/>
+   <method old="setSections([Lcom/nextlabs/nxl/pojos/NXLSection;)V" new="setSections"/>
+   <method old="setTags(Ljava/util/Map;)V" new="setTags"/>
+   <field old="attr Ljava/util/Map;" new="attr"/>
+   <field old="checksum [B" new="checksum"/>
+   <field old="count I" new="count"/>
+   <field old="rights Ljava/util/Map;" new="rights"/>
+   <field old="sections [Lcom/nextlabs/nxl/pojos/NXLSection;" new="sections"/>
+   <field old="tags Ljava/util/Map;" new="tags"/>
+  </class>
+  <class old="com.nextlabs.nxl.legacy.OldNxlDecryptionHandler" new="com.nextlabs.nxl.legacy.OldNxlDecryptionHandler">
+   <method old="close()V" new="close"/>
+   <method old="decryptContent([BI[B[B[B)[B" new="decryptContent"/>
+   <method old="getDecryptedContent([B[BIII[B)[B" new="getDecryptedContent"/>
+   <method old="getKey(Ljava/io/RandomAccessFile;Ljava/lang/String;Lcom/nextlabs/nxl/legacy/NXLFilePart;)[B" new="getKey"/>
+   <method old="parseContent()Lcom/nextlabs/nxl/interfaces/INxlFile;" new="parseContent"/>
+   <method old="parseContent(Ljava/lang/String;)Lcom/nextlabs/nxl/interfaces/INxlFile;" new="parseContent"/>
+   <method old="readMeta()Lcom/nextlabs/nxl/interfaces/INxlFileMetaData;" new="readMeta"/>
+   <method old="readTags()V" new="readTags"/>
+   <method old="removePaddingData([BI)[B" new="removePaddingData"/>
+   <field old="file Ljava/io/RandomAccessFile;" new="file"/>
+   <field old="metaData Lcom/nextlabs/nxl/legacy/OldNXLFileMetaData;" new="metaData"/>
+   <field old="unwrappedFile Lcom/nextlabs/nxl/legacy/OldNxlFile;" new="unwrappedFile"/>
+   <field old="util Lcom/nextlabs/nxl/crypt/AESEncryptionUtil;" new="util"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.DecryptionHandler" new="com.nextlabs.nxl.crypt.i">
+   <method old="close()V" new="A"/>
+   <method old="createUnwrappedFile()V" new="G"/>
+   <method old="decryptAndWriteFileContent(Ljava/io/RandomAccessFile;)V" new="a"/>
+   <method old="decryptFileContent()[[B" new="b"/>
+   <method old="getCEK(Lcom/nextlabs/nxl/pojos/CryptoHeaders;)[B" new="a"/>
+   <method old="getKey(Ljava/io/RandomAccessFile;Ljava/lang/String;[BJ)[B" new="a"/>
+   <method old="parseContent()Lcom/nextlabs/nxl/pojos/NxlFile;" new="B"/>
+   <method old="parseContent(Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFile;" new="a"/>
+   <method old="readBasicHeaders()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="h"/>
+   <method old="readCryptoHeaders()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="E"/>
+   <method old="readHeaders()Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="g"/>
+   <method old="readKeyEncryptionKey()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="H"/>
+   <method old="readMeta()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="C"/>
+   <method old="readPaddingData()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="e"/>
+   <method old="readPrimaryKeyInfo()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="F"/>
+   <method old="readRecoveryEncryptionKey()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="a"/>
+   <method old="readRecoveryKeyInfo()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="f"/>
+   <method old="readSectionTable()Lcom/nextlabs/nxl/pojos/SectionTable;" new="d"/>
+   <method old="readSections(I)Lcom/nextlabs/nxl/pojos/NXLSection;" new="a"/>
+   <method old="readSignatureHeaders()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="c"/>
+   <method old="validateChecksum([B)V" new="a"/>
+   <method old="validateHeaderInfo()V" new="D"/>
+   <field old="decryptedFileBytes [[B" new="e"/>
+   <field old="file Ljava/io/RandomAccessFile;" new="b"/>
+   <field old="metaData Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="D"/>
+   <field old="nxlHeaders Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="B"/>
+   <field old="readTime J" new="d"/>
+   <field old="sectionTable Lcom/nextlabs/nxl/pojos/SectionTable;" new="C"/>
+   <field old="unwrappedFile Lcom/nextlabs/nxl/pojos/NxlFile;" new="A"/>
+   <field old="util Lcom/nextlabs/nxl/crypt/AESEncryptionUtil;" new="a"/>
+   <field old="writeTime J" new="c"/>
+  </class>
+  <class old="com.nextlabs.nxl.exception.NXRTERROR" new="com.nextlabs.nxl.exception.NXRTERROR">
+   <field old="serialVersionUID J" new="serialVersionUID"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.c" new="com.nextlabs.nxl.crypt.n">
+   <method old="A()V" new="a"/>
+   <method old="a(Ljava/io/File;Ljava/io/File;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V" new="a"/>
+   <method old="a(Ljava/lang/String;Ljava/lang/String;)V" new="a"/>
+   <method old="a(Ljava/lang/String;Ljava/util/Map;I)V" new="a"/>
+   <method old="b()V" new="A"/>
+   <field old="a Lcom/nextlabs/nxl/crypt/h;" new="A"/>
+   <field old="a Ljava/lang/String;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.DecryptionFactory" new="com.nextlabs.nxl.crypt.f">
+   <method old="getDecryptionHandler(ILjava/io/RandomAccessFile;)Lcom/nextlabs/nxl/interfaces/IDecryptionHandler;" new="a"/>
+   <method old="getInstance()Lcom/nextlabs/nxl/crypt/DecryptionFactory;" new="a"/>
+   <field old="decryptionFactory Lcom/nextlabs/nxl/crypt/DecryptionFactory;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.AESEncryptionUtil" new="com.nextlabs.nxl.crypt.g">
+   <method old="doFinal([B[B[BI)[B" new="A"/>
+   <method old="generateNewKey([B)[B" new="a"/>
+   <method old="getProcessedContent([B[B[BI)[B" new="a"/>
+   <method old="hex(Ljava/lang/String;)[B" new="a"/>
+   <method old="hex([B)Ljava/lang/String;" new="A"/>
+   <method old="processData([B[BIJI)[B" new="a"/>
+   <field old="randomGenerator Ljava/security/SecureRandom;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.e" new="com.nextlabs.nxl.crypt.m">
+   <method old="B()Ljava/lang/String;" new="A"/>
+   <method old="a()V" new="a"/>
+   <method old="a(Ljava/io/File;)V" new="a"/>
+   <method old="a(Ljava/lang/String;)Ljava/io/File;" new="a"/>
+   <method old="b(Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFile;" new="A"/>
+   <method old="c()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="b"/>
+   <field old="B Ljava/lang/String;" new="A"/>
+   <field old="a Lcom/nextlabs/nxl/crypt/i;" new="a"/>
+   <field old="b Ljava/lang/String;" new="b"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NewNxlFileMetaData" new="com.nextlabs.nxl.pojos.NewNxlFileMetaData">
+   <method old="getHeaders()Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="getHeaders"/>
+   <method old="getSectionTable()Lcom/nextlabs/nxl/pojos/SectionTable;" new="getSectionTable"/>
+   <method old="setHeaders(Lcom/nextlabs/nxl/pojos/NXLHeaders;)V" new="setHeaders"/>
+   <method old="setSectionTable(Lcom/nextlabs/nxl/pojos/SectionTable;)V" new="setSectionTable"/>
+   <field old="headers Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="headers"/>
+   <field old="sectionTable Lcom/nextlabs/nxl/pojos/SectionTable;" new="sectionTable"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.g" new="com.nextlabs.nxl.crypt.l">
+   <method old="A([B)Ljava/lang/String;" new="a"/>
+   <method old="A([B[B[BI)[B" new="a"/>
+   <method old="a(Ljava/lang/String;)[B" new="a"/>
+   <method old="a([B)[B" new="A"/>
+   <method old="a([B[BIJI)[B" new="a"/>
+   <method old="a([B[B[BI)[B" new="A"/>
+   <field old="a Ljava/security/SecureRandom;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.h" new="com.nextlabs.nxl.crypt.k">
+   <method old="A()V" new="E"/>
+   <method old="A(Ljava/lang/String;ILjava/util/Map;)V" new="a"/>
+   <method old="B()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="A"/>
+   <method old="C()[B" new="C"/>
+   <method old="D()[B" new="h"/>
+   <method old="E()V" new="F"/>
+   <method old="F()V" new="B"/>
+   <method old="G()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="d"/>
+   <method old="H()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="G"/>
+   <method old="a()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="c"/>
+   <method old="a(Lcom/nextlabs/service/keyservice/IKey;Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NextlabsKeyId;" new="a"/>
+   <method old="a(Ljava/io/RandomAccessFile;Ljava/lang/String;)Lcom/nextlabs/service/keyservice/IKey;" new="a"/>
+   <method old="a(Ljava/lang/String;ILjava/util/Map;)Lcom/nextlabs/nxl/pojos/NXLSection;" new="A"/>
+   <method old="a(Ljava/lang/String;ILjava/util/Map;I)V" new="a"/>
+   <method old="a(SLjava/lang/String;Lcom/nextlabs/service/keyservice/IKey;)[B" new="a"/>
+   <method old="b()V" new="a"/>
+   <method old="c()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="D"/>
+   <method old="d()V" new="H"/>
+   <method old="e()V" new="b"/>
+   <method old="f()[B" new="e"/>
+   <method old="g()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="g"/>
+   <method old="h()V" new="i"/>
+   <method old="i()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="f"/>
+   <field old="A Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="A"/>
+   <field old="B Ljava/io/RandomAccessFile;" new="C"/>
+   <field old="C Ljava/util/Map;" new="B"/>
+   <field old="D Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="a"/>
+   <field old="E Ljava/util/ArrayList;" new="c"/>
+   <field old="F Lcom/nextlabs/nxl/crypt/g;" new="D"/>
+   <field old="G Ljava/util/Map;" new="G"/>
+   <field old="a Lcom/nextlabs/nxl/pojos/SectionTable;" new="b"/>
+   <field old="b Ljava/lang/String;" new="g"/>
+   <field old="c [B" new="f"/>
+   <field old="d Ljava/lang/String;" new="F"/>
+   <field old="e [B" new="d"/>
+   <field old="f Ljava/util/Map;" new="e"/>
+   <field old="g Ljava/io/RandomAccessFile;" new="E"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.i" new="com.nextlabs.nxl.crypt.j">
+   <method old="A()V" new="c"/>
+   <method old="B()Lcom/nextlabs/nxl/pojos/NxlFile;" new="B"/>
+   <method old="C()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="C"/>
+   <method old="D()V" new="g"/>
+   <method old="E()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="E"/>
+   <method old="F()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="F"/>
+   <method old="G()V" new="b"/>
+   <method old="H()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="A"/>
+   <method old="a()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="G"/>
+   <method old="a(I)Lcom/nextlabs/nxl/pojos/NXLSection;" new="a"/>
+   <method old="a(Lcom/nextlabs/nxl/pojos/CryptoHeaders;)[B" new="a"/>
+   <method old="a(Ljava/io/RandomAccessFile;)V" new="a"/>
+   <method old="a(Ljava/io/RandomAccessFile;Ljava/lang/String;[BJ)[B" new="a"/>
+   <method old="a(Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFile;" new="a"/>
+   <method old="a([B)V" new="a"/>
+   <method old="b()[[B" new="e"/>
+   <method old="c()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="f"/>
+   <method old="d()Lcom/nextlabs/nxl/pojos/SectionTable;" new="D"/>
+   <method old="e()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="d"/>
+   <method old="f()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="H"/>
+   <method old="g()Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="a"/>
+   <method old="h()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="h"/>
+   <field old="A Lcom/nextlabs/nxl/pojos/NxlFile;" new="C"/>
+   <field old="B Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="D"/>
+   <field old="C Lcom/nextlabs/nxl/pojos/SectionTable;" new="d"/>
+   <field old="D Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="a"/>
+   <field old="a Lcom/nextlabs/nxl/crypt/g;" new="b"/>
+   <field old="b Ljava/io/RandomAccessFile;" new="c"/>
+   <field old="c J" new="B"/>
+   <field old="d J" new="A"/>
+   <field old="e [[B" new="e"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.j" new="com.nextlabs.nxl.crypt.s">
+   <method old="A()V" new="a"/>
+   <method old="B()Lcom/nextlabs/nxl/pojos/NxlFile;" new="b"/>
+   <method old="C()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="C"/>
+   <method old="D()V" new="B"/>
+   <method old="E()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="G"/>
+   <method old="F()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="F"/>
+   <method old="G()V" new="g"/>
+   <method old="H()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="E"/>
+   <method old="b()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="d"/>
+   <method old="b()[[B" new="A"/>
+   <method old="b(I)Lcom/nextlabs/nxl/pojos/NXLSection;" new="a"/>
+   <method old="b(Lcom/nextlabs/nxl/pojos/CryptoHeaders;)[B" new="a"/>
+   <method old="b(Ljava/io/RandomAccessFile;)V" new="a"/>
+   <method old="b(Ljava/io/RandomAccessFile;Ljava/lang/String;[BJ)[B" new="a"/>
+   <method old="b(Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFile;" new="a"/>
+   <method old="b([B)V" new="a"/>
+   <method old="c()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="c"/>
+   <method old="d()Lcom/nextlabs/nxl/pojos/SectionTable;" new="h"/>
+   <method old="e()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="f"/>
+   <method old="f()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="e"/>
+   <method old="g()Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="D"/>
+   <method old="h()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="H"/>
+   <field old="A Lcom/nextlabs/nxl/pojos/NxlFile;" new="d"/>
+   <field old="B Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="B"/>
+   <field old="C Lcom/nextlabs/nxl/pojos/SectionTable;" new="C"/>
+   <field old="D Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="e"/>
+   <field old="b Lcom/nextlabs/nxl/crypt/l;" new="b"/>
+   <field old="b Ljava/io/RandomAccessFile;" new="D"/>
+   <field old="c J" new="a"/>
+   <field old="d J" new="c"/>
+   <field old="e [[B" new="A"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.k" new="com.nextlabs.nxl.crypt.r">
+   <method old="A()V" new="i"/>
+   <method old="A(Ljava/lang/String;ILjava/util/Map;)V" new="A"/>
+   <method old="B()Lcom/nextlabs/nxl/pojos/NXLKeyBlob;" new="g"/>
+   <method old="C()[B" new="b"/>
+   <method old="D()[B" new="F"/>
+   <method old="E()V" new="C"/>
+   <method old="F()V" new="a"/>
+   <method old="G()Lcom/nextlabs/nxl/pojos/NXLKeKeyID;" new="e"/>
+   <method old="H()Lcom/nextlabs/nxl/pojos/BasicHeaders;" new="G"/>
+   <method old="b()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="B"/>
+   <method old="b()V" new="d"/>
+   <method old="b(Lcom/nextlabs/service/keyservice/IKey;Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NextlabsKeyId;" new="a"/>
+   <method old="b(Ljava/io/RandomAccessFile;Ljava/lang/String;)Lcom/nextlabs/service/keyservice/IKey;" new="a"/>
+   <method old="b(Ljava/lang/String;ILjava/util/Map;)Lcom/nextlabs/nxl/pojos/NXLSection;" new="a"/>
+   <method old="b(Ljava/lang/String;ILjava/util/Map;I)V" new="a"/>
+   <method old="b(SLjava/lang/String;Lcom/nextlabs/service/keyservice/IKey;)[B" new="a"/>
+   <method old="c()Lcom/nextlabs/nxl/pojos/NxlPadding;" new="A"/>
+   <method old="d()V" new="c"/>
+   <method old="e()V" new="H"/>
+   <method old="f()[B" new="D"/>
+   <method old="g()Lcom/nextlabs/nxl/pojos/SignatureHeaders;" new="f"/>
+   <method old="h()V" new="h"/>
+   <method old="i()Lcom/nextlabs/nxl/pojos/CryptoHeaders;" new="E"/>
+   <field old="A Lcom/nextlabs/nxl/pojos/NXLHeaders;" new="b"/>
+   <field old="B Ljava/io/RandomAccessFile;" new="C"/>
+   <field old="C Ljava/util/Map;" new="E"/>
+   <field old="D Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="F"/>
+   <field old="E Ljava/util/ArrayList;" new="c"/>
+   <field old="F Lcom/nextlabs/nxl/crypt/l;" new="g"/>
+   <field old="G Ljava/util/Map;" new="D"/>
+   <field old="b Lcom/nextlabs/nxl/pojos/SectionTable;" new="A"/>
+   <field old="b Ljava/lang/String;" new="a"/>
+   <field old="c [B" new="d"/>
+   <field old="d Ljava/lang/String;" new="f"/>
+   <field old="e [B" new="G"/>
+   <field old="f Ljava/util/Map;" new="e"/>
+   <field old="g Ljava/io/RandomAccessFile;" new="B"/>
+  </class>
+  <class old="com.nextlabs.keymanagement.KeyMgmtThread" new="com.nextlabs.keymanagement.KeyMgmtThread">
+   <method old="call()Lcom/nextlabs/service/keyservice/IKey;" new="call"/>
+   <method old="call()Ljava/lang/Object;" new="call"/>
+   <field old="keyId [B" new="keyId"/>
+   <field old="keyRingName Ljava/lang/String;" new="keyRingName"/>
+   <field old="password [B" new="password"/>
+   <field old="timeStamp J" new="timeStamp"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.l" new="com.nextlabs.nxl.crypt.q">
+   <method old="A([B)Ljava/lang/String;" new="a"/>
+   <method old="A([B[B[BI)[B" new="A"/>
+   <method old="b(Ljava/lang/String;)[B" new="a"/>
+   <method old="b([B)[B" new="A"/>
+   <method old="b([B[BIJI)[B" new="a"/>
+   <method old="b([B[B[BI)[B" new="a"/>
+   <field old="b Ljava/security/SecureRandom;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NxlPadding" new="com.nextlabs.nxl.pojos.NxlPadding">
+   <method old="getPaddingData()[B" new="getPaddingData"/>
+   <method old="getPaddingSize()I" new="getPaddingSize"/>
+   <method old="setPaddingData([B)V" new="setPaddingData"/>
+   <method old="setPaddingSize(I)V" new="setPaddingSize"/>
+   <field old="paddingData [B" new="paddingData"/>
+   <field old="paddingSize I" new="paddingSize"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.EncryptionManager" new="com.nextlabs.nxl.crypt.c">
+   <method old="addSections(Ljava/lang/String;Ljava/util/Map;I)V" new="a"/>
+   <method old="close()V" new="b"/>
+   <method old="encrypt()V" new="A"/>
+   <method old="getVersion()I" new="a"/>
+   <method old="init(Ljava/io/File;Ljava/io/File;ILjava/util/Map;Ljava/util/Map;Ljava/util/Map;)V" new="a"/>
+   <method old="init(Ljava/io/File;Ljava/io/File;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V" new="a"/>
+   <method old="main([Ljava/lang/String;)V" new="main"/>
+   <method old="setVersion(I)V" new="a"/>
+   <method old="validateInputFiles(Ljava/lang/String;Ljava/lang/String;)V" new="a"/>
+   <field old="handler Lcom/nextlabs/nxl/crypt/EncryptionHandler;" new="a"/>
+   <field old="handler Lcom/nextlabs/nxl/interfaces/IEncryptionHandler;" new="A"/>
+   <field old="outputPath Ljava/lang/String;" new="a"/>
+   <field old="version I" new="b"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.m" new="com.nextlabs.nxl.crypt.p">
+   <method old="B()Ljava/lang/String;" new="A"/>
+   <method old="b()V" new="a"/>
+   <method old="b(Ljava/io/File;)V" new="a"/>
+   <method old="b(Ljava/lang/String;)Lcom/nextlabs/nxl/pojos/NxlFile;" new="a"/>
+   <method old="b(Ljava/lang/String;)Ljava/io/File;" new="A"/>
+   <method old="c()Lcom/nextlabs/nxl/pojos/NxlFileMetaData;" new="b"/>
+   <field old="B Ljava/lang/String;" new="b"/>
+   <field old="b Lcom/nextlabs/nxl/crypt/j;" new="A"/>
+   <field old="b Ljava/lang/String;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.ConfigManager" new="com.nextlabs.nxl.crypt.ConfigManager">
+   <method old="checkOutputFile(Ljava/lang/String;I)V" new="checkOutputFile"/>
+   <method old="getBooleanProperty(Ljava/lang/String;)Z" new="getBooleanProperty"/>
+   <method old="getInstance()Lcom/nextlabs/nxl/crypt/ConfigManager;" new="getInstance"/>
+   <method old="getIntProperty(Ljava/lang/String;)I" new="getIntProperty"/>
+   <method old="getLongProperty(Ljava/lang/String;)J" new="getLongProperty"/>
+   <method old="getStringProperty(Ljava/lang/String;)Ljava/lang/String;" new="getStringProperty"/>
+   <method old="initialize(Lcom/nextlabs/nxl/pojos/PolicyControllerDetails;)V" new="initialize"/>
+   <method old="initialize(Ljava/lang/String;)V" new="initialize"/>
+   <method old="removeFromOutputSet(Ljava/lang/String;I)V" new="removeFromOutputSet"/>
+   <method old="removeFromSet(Ljava/lang/String;I)V" new="removeFromSet"/>
+   <method old="validate()V" new="validate"/>
+   <field old="KEY_STORE_NAME Ljava/lang/String;" new="KEY_STORE_NAME"/>
+   <field old="KEY_STORE_PASSWORD Ljava/lang/String;" new="KEY_STORE_PASSWORD"/>
+   <field old="PC_HOST_NAME Ljava/lang/String;" new="PC_HOST_NAME"/>
+   <field old="RMI_PORT_NUM Ljava/lang/String;" new="RMI_PORT_NUM"/>
+   <field old="TRUST_STORE_NAME Ljava/lang/String;" new="TRUST_STORE_NAME"/>
+   <field old="TRUST_STORE_PASSWORD Ljava/lang/String;" new="TRUST_STORE_PASSWORD"/>
+   <field old="configPath Ljava/lang/String;" new="configPath"/>
+   <field old="decrypt I" new="decrypt"/>
+   <field old="decryptionSet Ljava/util/concurrent/ConcurrentSkipListSet;" new="decryptionSet"/>
+   <field old="encrypt I" new="encrypt"/>
+   <field old="encryptionSet Ljava/util/concurrent/ConcurrentSkipListSet;" new="encryptionSet"/>
+   <field old="instance Lcom/nextlabs/nxl/crypt/ConfigManager;" new="instance"/>
+   <field old="properties Ljava/util/Properties;" new="properties"/>
+  </class>
+  <class old="com.nextlabs.nxl.crypt.n" new="com.nextlabs.nxl.crypt.o">
+   <method old="A()V" new="a"/>
+   <method old="b()V" new="A"/>
+   <method old="b(Ljava/io/File;Ljava/io/File;Ljava/util/Map;Ljava/util/Map;Ljava/util/Map;)V" new="a"/>
+   <method old="b(Ljava/lang/String;Ljava/lang/String;)V" new="a"/>
+   <method old="b(Ljava/lang/String;Ljava/util/Map;I)V" new="a"/>
+   <field old="b Lcom/nextlabs/nxl/crypt/k;" new="A"/>
+   <field old="b Ljava/lang/String;" new="a"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.NextlabsKeyId" new="com.nextlabs.nxl.pojos.NextlabsKeyId">
+   <method old="getHash()[B" new="getHash"/>
+   <method old="getName()Ljava/lang/String;" new="getName"/>
+   <method old="getTimestamp()J" new="getTimestamp"/>
+   <method old="setHash([B)V" new="setHash"/>
+   <method old="setName(Ljava/lang/String;)V" new="setName"/>
+   <method old="setTimestamp(J)V" new="setTimestamp"/>
+   <field old="hash [B" new="hash"/>
+   <field old="name Ljava/lang/String;" new="name"/>
+   <field old="timestamp J" new="timestamp"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.BasicHeaders" new="com.nextlabs.nxl.pojos.BasicHeaders">
+   <method old="getAlignment()I" new="getAlignment"/>
+   <method old="getFlags()I" new="getFlags"/>
+   <method old="getMajVersion()S" new="getMajVersion"/>
+   <method old="getMinVersion()S" new="getMinVersion"/>
+   <method old="getPointerOfContent()I" new="getPointerOfContent"/>
+   <method old="getThumbPrint()[C" new="getThumbPrint"/>
+   <method old="setAlignment(I)V" new="setAlignment"/>
+   <method old="setFlags(I)V" new="setFlags"/>
+   <method old="setMajVersion(S)V" new="setMajVersion"/>
+   <method old="setMinVersion(S)V" new="setMinVersion"/>
+   <method old="setPointerOfContent(I)V" new="setPointerOfContent"/>
+   <method old="setThumbPrint([C)V" new="setThumbPrint"/>
+   <field old="alignment I" new="alignment"/>
+   <field old="flags I" new="flags"/>
+   <field old="majVersion S" new="majVersion"/>
+   <field old="minVersion S" new="minVersion"/>
+   <field old="pointerOfContent I" new="pointerOfContent"/>
+   <field old="thumbPrint [C" new="thumbPrint"/>
+  </class>
+  <class old="com.nextlabs.nxl.pojos.SignatureHeaders" new="com.nextlabs.nxl.pojos.SignatureHeaders">
+   <method old="getMessage()Ljava/lang/String;" new="getMessage"/>
+   <method old="getNxlSignatureCode()Ljava/lang/String;" new="getNxlSignatureCode"/>
+   <method old="setMessage(Ljava/lang/String;)V" new="setMessage"/>
+   <method old="setNxlSignatureCode(Ljava/lang/String;)V" new="setNxlSignatureCode"/>
+   <field old="message Ljava/lang/String;" new="message"/>
+   <field old="nxlSignatureCode Ljava/lang/String;" new="nxlSignatureCode"/>
+  </class>
+  <sources>
+  </sources>
+  <lines>
+  </lines>
+ </mapping>
+</allatori>

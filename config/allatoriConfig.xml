@@ -1,0 +1,111 @@
+<config>
+    <jars basedir="${package_dir}">
+        <jar in="RMJavaSdk.jar" out="RMJavaSdk.jar"/>
+    </jars>
+
+	<classpath basedir="${RMJavaSdk.lib.dir}">
+		<jar name="commons/*.jar" />
+		<jar name="jaxb/*.jar" />
+		<jar name="KeyMgmt/*.jar" />
+		<jar name="kms/*.jar" />
+	</classpath>
+
+    <keep-names>
+        <class template="class com.nextlabs.keymanagement.*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.util.*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.pojos.NXLFile" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.pojos.NXLFileMetaData" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.pojos.SectionTable" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.pojos.NXLHeaders" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.pojos.ConnectionResultWrapper" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.pojos.ConnectionResult" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.pojos.PolicyControllerDetails" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.test.*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class *NXLFile*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.legacy.*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.interfaces.*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.exception.*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class *RightsManager*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.crypt.StreamDecryptionState" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="interface com.nextlabs.nxl.Constants" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+         <class template="class *AESEncryptionUtil*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class *ConfigManager*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.crypt.OldNxlDecryptionHandler" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+        <class template="class com.nextlabs.nxl.legacy.*" >
+        <field access="private+"/>
+		<method template="private+ *(**)"/>
+        </class>
+    </keep-names>
+	
+	<property name="log-file" value="${log_dir}/log.xml"/>
+	<property name="member-reorder" value="enable"/>
+	<property name="control-flow-obfuscation" value="enable"/>
+	<property name="string-encryption" value="enable"/>
+	<property name="fields-naming" value="keywords"/>
+	<property name="line-numbers" value="obfuscate"/>
+	<property name="fields-naming" value="compact"/>
+	<property name="methods-naming" value="compact"/>
+	<property name="local-variables-naming" value="single-name"/>
+	
+</config>
+

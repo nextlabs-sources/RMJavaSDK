@@ -1,0 +1,74 @@
+#!/bin/bash
+#
+# DESCRIPTION
+#	Invoke release build
+#
+# USAGE:
+#	Steps to invoke this script.
+#		export NLEXTERNALDIR=<path>
+#		export BUILD_NUMBER=<#>
+#		source setEnv
+#		./buildRelease
+#
+# JENKINS BUILD:
+#	cd $WORKSPACE
+#	export NLEXTERNALDIR=C:/P4/external
+#	source setEnv
+#	./buildRelease
+#
+# Build Options:
+#	make -f build/Makefile.compile || exit $?
+#	make -f build/Makefile.compile compile install || exit $?
+#
+# Publish Options:
+#	make -f build/Makefile.publish TYPE=release || exit $?
+#	make -f build/Makefile.publish TYPE=release spe archive || exit $
+
+export ANT_HOME=$NLEXTERNALDIR2/apache-ant/apache-ant-1.7.0
+ANT=$ANT_HOME/bin/ant
+
+LOG_FILE=buildRelease.log
+BUILD_MANIFEST_FILE=build.manifest
+
+(
+set -x
+# Extract Perforce Workspace and Jenkins info (only if running on Jenkins)
+if [ -f ../config.xml ]; then
+	scripts/getGitWorkspaceInfo.pl ../config.xml
+fi
+
+# Prepare environment
+./configure --type=release || exit $?
+source build.config
+
+# Set ANT related options.
+export ANT_OPTS="-Xmx1024M -XX:PermSize=128m -XX:MaxPermSize=512m"
+export ANT_ARGS="-Dexternal.dir=$NLEXTERNALDIR2"
+
+# Prepare dependencies
+${ANT} -f scripts/build_xlib.xml || exit $?
+
+# Compile code and build installers
+${ANT} -f scripts/build.xml || exit $?
+
+# Publish packages and artifacts to BODA only if PUBLISH_TO_BODA environment variable is set
+if [ "X${PUBLISH_TO_BODA}" = "XYes" -o "X${PUBLISH_TO_BODA}" = "Xyes" -o "X${PUBLISH_TO_BODA}" = "XYES" -o "X${PUBLISH_TO_BODA}" = "X1" ]
+then
+	# Publish installers, artifacts & archive packages
+	make -f scripts/Makefile.publish TYPE=release || exit $?
+	make -f scripts/Makefile.publish TYPE=release archive_package || exit $?
+fi
+
+# Create and publish build manifest
+scripts/createBuildManifest.pl $LOG_FILE > $BUILD_MANIFEST_FILE || exit $?
+# Publish build manifest to BODA only if PUBLISH_TO_BODA environment variable is set
+if [ "X${PUBLISH_TO_BODA}" = "XYes" -o "X${PUBLISH_TO_BODA}" = "Xyes" -o "X${PUBLISH_TO_BODA}" = "XYES" -o "X${PUBLISH_TO_BODA}" = "X1" ]
+then
+	make -f scripts/Makefile.publish TYPE=release manifest || exit $?
+fi
+set +x
+) 2>&1 | tee $LOG_FILE
+
+exit ${PIPESTATUS[0]}
+
+## EOF ##

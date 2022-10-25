@@ -1,0 +1,223 @@
+<project name="build_compile" default="all" basedir=".">
+	
+	<property name="nlbuildroot" value="${basedir}/.." />
+	<!-- Propery files -->
+	<property environment="env" />
+	<property file="${basedir}/build.properties" />
+	<property file="${basedir}/rmJavaSDK-build.properties" />
+	<!-- Global properties -->
+	<property name="package_dir" value="${build_dir}/${package_name}" />
+
+	<property name="dist_SC_zip_file_name" value="${package_RMS}-${version_rms_str}-${version_build_short}-${build_date_long}.zip" />
+	<property name="dist_KM_zip_file_name" value="KeyManagementService-${version_str}-${version_build_short}-${build_date_long}.zip" />
+	
+	<!-- Dump properties -->
+	<echoproperties />
+
+	<echo message="INFO: Dump properties completed" />
+	
+	<!-- Sanity checks -->
+	<fail message="RMJavaSdk.root is not set" unless="RMJavaSdk.root" />
+	<fail message="RMJavaSdk.root is empty">
+		<condition>
+			<equals arg1="${RMJavaSdk.root}" arg2="" trim="true" />
+		</condition>
+	</fail>
+	<available file="${RMJavaSdk.root}" type="dir" property="local.RMJavaSdk.root_exists" />
+	<fail message="RMJavaSdk.root directory does not exist - ${RMJavaSdk.root}" unless="local.RMJavaSdk.root_exists" />
+
+	<echo message="INFO: Sanity check completed (no error)" />
+
+	<path id="classpath.keyMgmt">
+		<fileset dir="${keyMgmtLibDir}" includes="*.jar"/>
+	</path>
+	<path id="classpath.Obfuscation">
+		<fileset dir="${obfuscationDir}" includes="*.jar"/>
+	</path>		
+	<path id="classpath.Logging">
+		<fileset dir="${logLibDir}" includes="*.jar"/>
+	</path>
+	<path id="classpath.jaxb">
+		<fileset dir="${jaxbLibDir}" includes="*.jar" />
+	</path>
+	<path id="classpath.kms">
+		<fileset dir="${kmsXMLDir}" includes="*.jar" />
+	</path>		
+	<path id="classpath.commons">
+		<fileset dir="${commonsLibDir}" includes="*.jar" />
+	</path>			
+	<!-- Global tasks -->
+	<tstamp>
+		<format property="local.now" pattern="EEE, d MMM yyyy HH:mm:ss Z" />
+	</tstamp>
+
+	<echo message="version_str = ${version_str}" />
+	<echo message="time = ${local.now}" />
+
+	<!-- Targets -->
+	<target name="all" description="Default for all" depends="clean, xjctobeans, compile-shared, compile, package, obfuscate-shared, obfuscate,doc,zip" />
+	
+	<target name="clean" description="Delete all build artifacts" depends="">
+		<delete includeemptydirs="true" dir="${build_dir}"/>
+		<delete includeemptydirs="true" dir="${package_dir}"/>
+		<delete includeemptydirs="true" dir="${sample_dir_src}"/>
+		<delete includeemptydirs="true" dir="${docs_dir}"/>
+	</target>
+	
+	<target name="compile" description="Compile the project" depends="xjctobeans">	
+		<mkdir dir="${classes_dir}" />
+		<javac source="1.6" target="1.6" srcdir="${src_dir}" destdir="${classes_dir}" encoding="UTF-8">
+			<classpath refid="classpath.keyMgmt"/>
+			<classpath refid="classpath.Logging"/>
+			<classpath refid="classpath.kms"/>
+			<classpath refid="classpath.commons"/>
+        	<include name="**/*.java" />
+			<exclude name="**/test/**"/>
+			<exclude name="**/samples/**"/>
+			<exclude name="**/com/nextlabs/nxl/sharedutil/**"/>
+        </javac>
+		<jar destfile="${build_dir}/${package_name}.jar" >
+    		<fileset dir="${classes_dir}" 
+       			includes="**/*.class"
+                excludes="**/test/**/*.class"/>
+    		<manifest>
+				<attribute name="Java-Version" value="${java.version}"/>
+				<attribute name="Implementation-Vendor" value="NextLabs, Inc."/>
+				<attribute name="Implementation-Title" value="${product_name}"/>
+				<attribute name="Implementation-Version" value="${version_str} (${build_number})"/>
+				<attribute name="Implementation-Time" value="${local.now}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="compile-shared" description="Compile shared utility">	
+		<mkdir dir="${shared_classes_dir}" />
+		<javac source="1.6" target="1.6" srcdir="${src_dir}" destdir="${shared_classes_dir}" encoding="UTF-8">
+			<classpath refid="classpath.commons"/>
+			<include name="**/com/nextlabs/nxl/sharedutil/*.java"/>
+			<exclude name="**/test/**"/>
+			<exclude name="**/samples/**"/>
+        </javac>
+		<jar destfile="${build_dir}/${shared_package_name}.jar" >
+    		<fileset dir="${shared_classes_dir}" 
+       			includes="**/*.class"
+                excludes="**/test/**/*.class"/>
+    		<manifest>
+				<attribute name="Java-Version" value="${java.version}"/>
+				<attribute name="Implementation-Vendor" value="NextLabs, Inc."/>
+				<attribute name="Implementation-Title" value="${shared_product_name}"/>
+				<attribute name="Implementation-Version" value="${version_str} (${build_number})"/>
+				<attribute name="Implementation-Time" value="${local.now}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="xjctobeans">
+		<echo>Compiling xml schemas</echo>
+		<property name="xjc_root" value="${build_dir}/xjc" />
+		<property name="xjc_src" value="${xjc_root}/src" />
+		<property name="xjc_dest" value="${xjc_root}/classes" />
+
+		<delete dir="${xjc_root}" quiet="true" />
+		<mkdir dir="${xjc_src}" />
+		<mkdir dir="${xjc_dest}" />
+		<xjc destdir="${xjc_src}">
+			<schema dir="${xmlbeans_schemas_dir}" includes="**/*.xsd" />
+		</xjc>
+		<javac source="1.6" target="1.6" srcdir="${xjc_src}" destdir="${xjc_dest}" debug="${env.RMS_DEV_BUILD}" encoding="UTF-8">
+			<classpath refid="classpath.jaxb" />
+		</javac>
+		<jar destfile="${build_dir}/${package_name}_xmlbeans.jar" basedir="${xjc_dest}" />
+		<mkdir dir="${kmsXMLDir}" />
+		<copy todir="${kmsXMLDir}">
+			<fileset dir="${build_dir}" casesensitive="yes">
+				<include name="${package_name}_xmlbeans.jar" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJC2Task">
+		<classpath>
+			<path refid="classpath.jaxb" />
+		</classpath>
+	</taskdef>
+	
+	<target name="obfuscate" depends="package">
+		<mkdir dir="${log_dir}" />	
+		<!--
+		<taskdef name="allatori" classname="com.allatori.ant.ObfuscatorTask" classpath="../lib/Obfuscation/allatori.jar"/>
+        <allatori config="../config/allatoriConfig.xml"/>
+        -->
+		<taskdef name="allatori" classname="com.allatori.ant.ObfuscatorTask">
+			<classpath>
+				<path refid="classpath.Obfuscation"/>
+			</classpath>
+		</taskdef>
+        <allatori config="config/allatoriConfig.xml"/>
+    </target>
+	
+	<target name="obfuscate-shared" depends="package">
+		<mkdir dir="${log_dir}" />	
+		<taskdef name="allatori" classname="com.allatori.ant.ObfuscatorTask">
+			<classpath>
+				<path refid="classpath.Obfuscation"/>
+			</classpath>
+		</taskdef>
+        <allatori config="config/AllatoriConfig_SharedUtil.xml"/>
+    </target>
+
+	<target name="package" depends="doc" description="Packages everything into a zip" >		
+		<copy todir="${package_dir}" overwrite="true">
+			<fileset file="${build_dir}/*.jar" />
+			<fileset file="${keyMgmtLibDir}/*.jar" />
+			<fileset file="${commonsLibDir}/*.jar" />
+			<fileset file="${logLibDir}/*.jar" />
+			<fileset file="${kmsXMLDir}/*.jar" />
+		</copy>			
+	</target>	
+	
+	<target name="zip" depends="obfuscate,obfuscate-shared" description="Packages everything into a zip" >		
+		<zip destfile="${publish_dir}.zip">
+			<fileset dir="${doc_dir}"> 
+				<include name="**" />
+			</fileset>
+			<fileset dir="${package_dir}">
+				<include name="*.jar" />
+			</fileset>
+		</zip>
+		<mkdir dir="${sample_dir_src}" />
+		<copy todir="${sample_dir_src}" overwrite="true">
+			<fileset file="${sample_code_path}/*" />
+		</copy>	
+		<zip destfile="${sample_zip_path}" >
+			<fileset dir="${sample_dir}"> 
+				<include name="**" />
+			</fileset>
+		</zip>			
+	</target>
+    
+    <target name="compile-test" description="Compile the Testing code" depends="clean, compile" >	
+		<mkdir dir="${test_classes_dir}" />		  
+        <javac srcdir="${src_dir}" source="1.6" target="1.6" destdir="${test_classes_dir}" encoding="UTF-8"> 
+			<classpath refid="classpath.keyMgmt"/>
+        	<include name="com/test/nextlabs/rms/*.java" />
+        </javac>
+        <jar destfile="${build_dir}/${package_name_test}.jar" basedir="${test_classes_dir}">
+			<manifest>
+				<attribute name="Java-Version" value="${java.version}"/>
+				<attribute name="Implementation-Vendor" value="NextLabs, Inc."/>
+				<attribute name="Implementation-Title" value="${product_name}"/>
+				<attribute name="Implementation-Version" value="${version_str} (${build_number})"/>
+				<attribute name="Implementation-Time" value="${local.now}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	 <target name="doc" depends="compile-shared, compile" description="generate documentation">
+	   	<mkdir dir="${doc_dir}"/>
+	   	<mkdir dir="${doc_dir}/docs"/>
+	 	<javadoc destdir="${doc_dir}/docs" author="true" version="true" sourcefiles="${src_dir}/com/nextlabs/nxl/crypt/RightsManager.java,
+	 		${src_dir}/com/nextlabs/nxl/pojos/NXLFile.java,${src_dir}/com/nextlabs/nxl/pojos/NXLFileMetaData.java"  failonerror="true">
+	 	</javadoc>
+	  </target>
+</project>

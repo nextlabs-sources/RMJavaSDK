@@ -1,0 +1,26 @@
+<config>
+	<jars basedir="${package_dir}">
+		<jar in="RMEncryptionUtil.jar" out="RMEncryptionUtil.jar" />
+	</jars>
+
+	<classpath basedir="${RMJavaSdk.lib.dir}">
+		<jar name="commons/*.jar" />
+	</classpath>
+
+	<keep-names>
+		<class template="class com.nextlabs.nxl.sharedutil.*">
+			<method template="public *(**)" />
+		</class>
+	</keep-names>
+
+	<property name="log-file" value="${log_dir}/log-shared.xml" />
+	<property name="member-reorder" value="enable" />
+	<property name="control-flow-obfuscation" value="enable" />
+	<property name="string-encryption" value="enable" />
+	<property name="fields-naming" value="keywords" />
+	<property name="line-numbers" value="obfuscate" />
+	<property name="fields-naming" value="compact" />
+	<property name="methods-naming" value="compact" />
+	<property name="local-variables-naming" value="single-name" />
+</config>
+
